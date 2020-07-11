@@ -42,6 +42,8 @@ namespace MVC_EF_Start.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public string Professor { get; set; }
         public List<Enrolment> enrolments { get; set; }
     }
 

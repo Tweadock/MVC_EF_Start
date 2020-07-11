@@ -34,7 +34,42 @@ namespace MVC_EF_Start.Controllers
       MyCompany.type = "ISM";
       MyCompany.iexId = "ISM";
 
-      Quote MyCompanyQuote1 = new Quote();
+      
+     Student NewStudent = new Student();
+            NewStudent.Name = "Travis Weadock";
+            dbContext.Students.Add(NewStudent);
+     Student NewStudent1 = new Student();
+            NewStudent1.Name = "Bart Simpson";
+            dbContext.Students.AddRange(NewStudent1);
+     Student NewStudent2 = new Student();
+            NewStudent2.Name = "Bruce Wayne";
+            dbContext.Students.AddRange(NewStudent2);
+     Student NewStudent3 = new Student();
+            NewStudent3.Name = "Betty Boop";
+            dbContext.Students.AddRange(NewStudent3);
+
+
+            Course NewCourse = new Course();
+            NewCourse.Name = "Biology";
+            NewCourse.Professor = "Prof. Frink";
+            dbContext.Courses.Add(NewCourse);
+
+            Course NewCourse1 = new Course();
+            NewCourse1.Name = "Management";
+            NewCourse1.Professor = "Mr. Belding";
+            dbContext.Courses.Add(NewCourse1);
+            
+            Course NewCourse2 = new Course();
+            NewCourse2.Name = "Engineering 101";
+            NewCourse2.Professor = "Prof. E. Coyote"
+            dbContext.Courses.Add(NewCourse2);
+
+            Course NewCourse3 = new Course();
+            NewCourse3.Name = "Algebra";
+            NewCourse3.Professor = "Dr. Einstein"
+            dbContext.Courses.Add(NewCourse3);
+
+            Quote MyCompanyQuote1 = new Quote();
       //MyCompanyQuote1.EquityId = 123;
       MyCompanyQuote1.date = "11-23-2018";
       MyCompanyQuote1.open = 46.13F;
@@ -66,11 +101,14 @@ namespace MVC_EF_Start.Controllers
       MyCompanyQuote2.changeOverTime = 0.56F;
       MyCompanyQuote2.symbol = "MCOB";
 
-      dbContext.Companies.Add(MyCompany);
-      dbContext.Quotes.Add(MyCompanyQuote1);
-      dbContext.Quotes.Add(MyCompanyQuote2);
+      dbContext.Companies.AddRange(MyCompany);
+      dbContext.Quotes.AddRange(MyCompanyQuote1);
+      dbContext.Quotes.AddRange(MyCompanyQuote2);
+      dbContext.Courses.AddRange(NewCourse);
+      dbContext.Students.AddRange(NewStudent);
+      
 
-      dbContext.SaveChanges();
+            dbContext.SaveChanges();
       
       // READ operation
       Company CompanyRead1 = dbContext.Companies
@@ -97,21 +135,19 @@ namespace MVC_EF_Start.Controllers
 
     public ViewResult LINQOperations()
     {
-      Company CompanyRead1 = dbContext.Companies
-                                      .Where(c => c.symbol == "MCOB")
+      Student CompanyRead1 = dbContext.Students
+                                      .Where(c => c.Name == "Betty Boop")
                                       .First();
 
-      Company CompanyRead2 = dbContext.Companies
-                                      .Include(c => c.Quotes)
-                                      .Where(c => c.symbol == "MCOB")
+      Course CompanyRead2 = dbContext.Courses                                      
+                                      .Where(c => c.Name == "Algebra")
                                       .First();
 
-      Quote Quote1 = dbContext.Companies
-                              .Include(c => c.Quotes)
-                              .Where(c => c.symbol == "MCOB")
-                              .FirstOrDefault()
-                              .Quotes
-                              .FirstOrDefault();
+      Course Quote1 = dbContext.Courses
+                                    .Include(c => c.Professor)
+                                    .Where(c => c.Name == "Engineering 101")
+                                    .FirstOrDefault();
+                             
 
       return View();
     }
