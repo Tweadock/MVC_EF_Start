@@ -61,13 +61,41 @@ namespace MVC_EF_Start.Controllers
             
             Course NewCourse2 = new Course();
             NewCourse2.Name = "Engineering 101";
-            NewCourse2.Professor = "Prof. E. Coyote"
+            NewCourse2.Professor = "Prof. E. Coyote";
             dbContext.Courses.Add(NewCourse2);
 
             Course NewCourse3 = new Course();
             NewCourse3.Name = "Algebra";
-            NewCourse3.Professor = "Dr. Einstein"
+            NewCourse3.Professor = "Dr. Einstein";
             dbContext.Courses.Add(NewCourse3);
+
+
+            Enrolment NewEnrolment = new Enrolment();
+            NewEnrolment.student = NewStudent;
+            NewEnrolment.course = NewCourse;
+            NewEnrolment.grade = "A";
+            dbContext.Enrolments.Add(NewEnrolment);
+
+            Enrolment NewEnrolment1 = new Enrolment();
+            NewEnrolment1.student = NewStudent1;
+            NewEnrolment1.course = NewCourse1;
+            NewEnrolment1.grade = "A-";
+            dbContext.Enrolments.Add(NewEnrolment1);
+
+            Enrolment NewEnrolment2 = new Enrolment();
+            NewEnrolment2.student = NewStudent2;
+            NewEnrolment2.course = NewCourse2;
+            NewEnrolment2.grade = "C";
+            dbContext.Enrolments.Add(NewEnrolment2);
+
+            Enrolment NewEnrolment3 = new Enrolment();
+            NewEnrolment3.student = NewStudent3;
+            NewEnrolment3.course = NewCourse3;
+            NewEnrolment3.grade = "B";
+            dbContext.Enrolments.Add(NewEnrolment3);
+
+
+
 
             Quote MyCompanyQuote1 = new Quote();
       //MyCompanyQuote1.EquityId = 123;

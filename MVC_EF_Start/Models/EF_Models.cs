@@ -40,7 +40,7 @@ namespace MVC_EF_Start.Models
 
   public class Course
     {
-        public int Id { get; set; }
+        public int CourseId { get; set; }
         public string Name { get; set; }
 
         public string Professor { get; set; }
@@ -49,15 +49,17 @@ namespace MVC_EF_Start.Models
 
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         public string Name { get; set; }
         public List<Enrolment> enrolments { get; set; }
     }
 
     public class Enrolment
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public Course course { get; set; }
         public Student student { get; set; }
+
+        public string grade { get; set; }
     }
 }
